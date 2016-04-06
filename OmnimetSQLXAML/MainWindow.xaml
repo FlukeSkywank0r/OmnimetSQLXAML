@@ -1,0 +1,126 @@
+<Window x:Name="SoftwareLicenseManager" x:Class="OmnimetSQLXAML.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OmnimetSQLXAML"
+        mc:Ignorable="d"
+        Title="SoftwareLicenseManager" Height="580" Width="1120" Icon="favicon.ico" FontFamily="Arial" FontSize="12">
+
+    <Grid>
+        <Viewbox Width="Auto" Height="Auto" HorizontalAlignment="Left"  VerticalAlignment="Top" >
+            <Grid Width="1120" Background="White" Height="580">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="490"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Row ="1" x:Name="dataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Height="490" Width="800" IsEnabled="True" Background="#FF0D4FAE" SelectionChanged="SelectedRow" Grid.ColumnSpan="8"/>
+                    <ComboBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="cmbSearch" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Loaded="cmbSearch_Loaded" SelectionChanged="cmbSearch_SelectionChanged" Height="21" />
+                    <TextBox Grid.Row ="3" Grid.Column="1" x:Name="txtSearch" Height="25" VerticalAlignment="Top" Visibility="Visible" HorizontalAlignment="Right" Width="100" Grid.ColumnSpan="2"/>
+                    <Button Style="{StaticResource myButton}" Grid.Row ="3" Grid.Column="3" x:Name="btnSearch" Content="Search Text" Height="25" VerticalAlignment="Top" Visibility="Visible" Click="btnSearch_Click" HorizontalAlignment="Center" Width="76" Background="#FFD4D0C8" />
+                    <DatePicker Grid.Row ="3" Grid.Column="4" x:Name="dPickStart" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Select Date" SelectedDate="{Binding Path=PDate,StringFormat='dd.MM.yyyy'}" Height="24" Width="95"/>
+                    <DatePicker Grid.Row ="3" Grid.Column="5" x:Name="dPickEnd" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Select Date" SelectedDate="{Binding Path=PDate,StringFormat='dd.MM.yyyy'}" Height="24" Width="95"/>
+                    <Button Grid.Row ="3" Grid.Column="6" x:Name="btnSearchText" Content="Search Date" Height="25" VerticalAlignment="Top" Visibility="Visible" Click="btnSearchDate_Click" HorizontalAlignment="Center" Width="75" Margin="15,0,10,0" />
+                    <Button Grid.Row ="3" Grid.Column="7" x:Name="btnExportExcel" Content="Export2Excel" Height="25" VerticalAlignment="Top" Visibility="Visible" Click="btnExportExcel_Click" HorizontalAlignment="Center" Width="80" Margin="10,0" />
+                    <!-- <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="100"> -->
+                    <TextBox Grid.Row ="4" Grid.Column="0" x:Name="txttheDate" Height="25" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="Hidden" Width="36" />
+                    <Label Grid.Row ="4" Grid.Column="1" x:Name="lblID" Content="ID : " VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="30" Visibility="Hidden"/>
+                    <TextBox Grid.Row ="4" Grid.Column="1" x:Name="txtID" Height="25" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="Hidden" Width="36" Margin="32,0" />
+                    <!--</StackPanel>
+                    </StackPanel> -->
+                    <Button Grid.Row ="4" Grid.Column="2" x:Name="btnInsert" Content="Insert" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnInsert_Click" HorizontalAlignment="Center" Width="76" Margin="12,0" />
+                    <Button Grid.Row ="4" Grid.Column="3" x:Name="btnUpdate" Content="Update" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnUpdate_Click" HorizontalAlignment="Center" Width="76" Margin="12,0" />
+                    <Button Grid.Row ="4" Grid.Column="4" x:Name="btnView" Content="View" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnView_Click" HorizontalAlignment="Center" Width="76" Margin="12,0" />
+                    <Button Grid.Row ="4" Grid.Column="5" x:Name="btnDelete" Content="Delete" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnDelete_Click" HorizontalAlignment="Center" Width="76" Margin="12,0" />
+                    <TextBox Grid.Row ="4" Grid.Column="6" x:Name="txtDongle" Height="25" VerticalAlignment="Top" Visibility="Hidden" HorizontalAlignment="Center" Width="36" Grid.RowSpan="2" />
+                    <TextBox Grid.Row ="4" Grid.Column="6" x:Name="txtAxlLines" Height="25" VerticalAlignment="Top" Visibility="Hidden" HorizontalAlignment="Center" Width="36" />
+                    <Button Grid.Row ="4" Grid.Column="7" x:Name="btnCloseAdmin" Content="Close Admin" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnCloseAdmin_Click" HorizontalAlignment="Center" Width="76" Margin="12,0" />
+                </Grid>
+                <Grid Grid.Column="3" Margin="0,0,-35,0">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF0D4FAE" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120*"/>
+                        <ColumnDefinition Width="310*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="107"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row ="1" x:Name="lblLicense" Content="License Key : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <TextBox Grid.Row ="1" Grid.Column="1" x:Name="txtLicense" Height="23" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" />
+
+                    <Label Grid.Row ="2" x:Name="lblSoftware" Content="Software : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <ComboBox Grid.Row ="2" Grid.Column="1" x:Name="cmbSoft" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Loaded="cmbSoft_Loaded" SelectionChanged="cmbSoft_SelectionChanged" Height="21"/>
+
+                    <Label Grid.Row ="3" x:Name="lblVersion" Content="Version : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <TextBox Grid.Row ="3" Grid.Column="1" x:Name="txtVersion" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="19" />
+
+                    <Label Grid.Row ="4" x:Name="lblSType" Content="Software : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <ComboBox Grid.Row ="4" Grid.Column="1" x:Name="cmbSType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Loaded="cmbSType_Loaded" SelectionChanged="cmbSType_SelectionChanged" Height="21"/>
+
+                    <CheckBox Grid.Row ="5" Grid.Column="1" x:Name="chkDongle" Content=" Dongle used" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="chkDongle_Checked" Unchecked="chkDongle_Unchecked" Height="13" Width="79"/>
+
+                    <Label Grid.Row ="6" x:Name="lblPDate" Content="Purchase Date : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <DatePicker Grid.Row ="6" Grid.Column="1" x:Name="dPick" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Select Date" SelectedDate="{Binding Path=PDate,StringFormat='dd.MM.yyyy'}" Height="24" Width="121"/>
+
+                    <Label Grid.Row ="7" x:Name="lblCustomer" Content="Customer : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <TextBox Grid.Row ="7" Grid.Column="1" x:Name="txtCustomer" Height="23" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" />
+
+                    <Label Grid.Row ="8" x:Name="lblSeller" Content="Seller : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <ComboBox Grid.Row ="8" Grid.Column="1" x:Name="cmbSeller" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Loaded="cmbSeller_Loaded" SelectionChanged="cmbSeller_SelectionChanged" Height="21"/>
+
+                    <Label Grid.Row ="9" x:Name="lblNotes" Content="Notes : " HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="100"/>
+                    <TextBox Grid.Row ="9" Grid.Column="1" x:Name="txtNotes" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+
+                    <GroupBox Grid.Row ="10" Grid.Column="1" x:Name="grpPassword" Header="Password" HorizontalAlignment="Left" Height="75" VerticalAlignment="Center" Width="100" Background="White" Visibility="Hidden">
+                        <StackPanel>
+                            <TextBox x:Name="txtPass" HorizontalAlignment="Center" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Visibility="Hidden" />
+                            <Button x:Name="btnEnter" Content="Enter" Height="25" VerticalAlignment="Top" Visibility="Hidden" Click="btnEnter_Click" HorizontalAlignment="Center" Width="75" />
+                        </StackPanel>
+                    </GroupBox>
+                    <Button Grid.Row ="10" x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="50" Click="btnAdmin_Click" Margin="7,35,0,21" Visibility="Visible"/>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>
